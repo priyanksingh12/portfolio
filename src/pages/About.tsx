@@ -60,10 +60,13 @@ const About = () => {
             </h3>
             <div className="flex flex-col">
               <p className="font-sans text-xl md:text-2xl lg:text-3xl font-bold leading-tight tracking-tight">
-                Indian Institute of Information Technology, Kottayam
+                Dr. A. P. J. Abdul Kalam Technical University (AKTU)
               </p>
               <p className="font-sans text-xl md:text-2xl lg:text-3xl font-normal text-black/70 leading-tight tracking-tight">
-                B.Tech, Computer Science & Engineering (2023–2027)
+                B.Tech, Computer Science & Engineering – Data Science (2024–2028)
+              </p>
+              <p className="font-sans text-xl md:text-2xl lg:text-3xl font-normal text-black/70 leading-tight tracking-tight">
+                AKGEC, Ghaziabad · Lucknow Public College (2019–2023)
               </p>
             </div>
           </motion.div>
@@ -78,20 +81,10 @@ const About = () => {
               {/* Job 1 */}
               <div>
                 <p className="font-sans text-xl md:text-2xl lg:text-3xl font-bold leading-tight tracking-tight">
-                  aiRender Technologies
+                  Team Conatus, Computer Science Society
                 </p>
                 <p className="font-sans text-xl md:text-2xl lg:text-3xl font-normal text-black/70 leading-tight tracking-tight">
-                  Full Stack Developer (May 2025 – May 2026)
-                </p>
-              </div>
-
-              {/* Job 2 */}
-              <div>
-                <p className="font-sans text-xl md:text-2xl lg:text-3xl font-bold leading-tight tracking-tight">
-                  Infosys Springboard
-                </p>
-                <p className="font-sans text-xl md:text-2xl lg:text-3xl font-normal text-black/70 leading-tight tracking-tight">
-                  Web Development Intern (Oct 2024 – Dec 2024)
+                  Frontend Developer (Sept 2025 – Present) · AKGEC
                 </p>
               </div>
             </div>
@@ -104,10 +97,10 @@ const About = () => {
             </h3>
             <ul className="flex flex-col">
               <li className="font-sans text-xl md:text-2xl lg:text-3xl font-bold leading-tight tracking-tight">
-                Software Engineering Architecture
+                Frontend Development & UI Engineering
               </li>
               <li className="font-sans text-xl md:text-2xl lg:text-3xl font-bold leading-tight tracking-tight">
-                Artificial Intelligence & Process Automation
+                Full-Stack Web Applications
               </li>
             </ul>
           </motion.div>
