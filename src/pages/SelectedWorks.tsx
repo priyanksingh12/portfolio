@@ -6,39 +6,21 @@ import './ScrollStack.css';
 const projects = [
   {
     id: "001",
-    title: "Enterprise Resource Architecture",
-    stack: "React / Node.js / Firebase / Firestore",
-    description: "A full-stack ERP engine automating multi-currency invoicing, inventory logic, and international tax compliance for distributed teams.",
-    links: { live: "https://erpbeta.netlify.app", code: "#" },
+    title: "GraphGuardians",
+    stack: "React.js / Tailwind CSS / Node.js / Express / TigerGraph / MongoDB / Firebase",
+    description: "An AI-powered dependency security intelligence platform. Built responsive frontend interfaces using React.js and Tailwind CSS for dependency graph visualization with real-time dashboards, live vulnerability monitoring via Socket.IO and Firebase, and severity-based filtering for large-scale dependency analysis.",
+    links: { live: "https://graph-guardians-frontend.vercel.app/", code: "#" },
     image: "/p1.png",
     cta: "Live Project"
   },
   {
     id: "002",
-    title: "Geospatial Workforce Analytics",
-    stack: "React / Redux / Google Maps API/ Firebase",
-    description: "Real-time tracking system implementing location-based validation protocols and live route visualization for workforce monitoring.",
-    links: { live: "#", code: "#" },
+    title: "MindEase",
+    stack: "React / Vite / Tailwind CSS / Node.js / Express / MongoDB",
+    description: "A mental-wellness platform tested by 150+ early users. Engineered responsive interfaces for mood tracking, journaling, and AI-powered chat. Integrated REST APIs with JWT-based authentication and Chart.js/Recharts dashboards for weekly and monthly emotional insights.",
+    links: { live: "https://mindeasess.netlify.app/", code: "#" },
     image: "/p2.png",
     cta: "Live Project"
-  },
-  {
-    id: "003",
-    title: "OrderEase: Real-time online table food ordering system",
-    stack: "React / Firebase / Node.js",
-    description: "A real-time restaurant table ordering system that allows customers to place food orders directly from their table while enabling admins to manage menus, waiters, and assign waiters to customers for seamless service coordination.",
-    links: { live: "https://github.com/MAHESHPPAI/OrderEase", code: "#" },
-    image: "./p3.png",
-    cta: "View on Github"
-  },
-  {
-    id: "004",
-    title: "BusBuddy: Transit Management Logic",
-    stack: "React / Firebase / Springboot / ngrok",
-    description: "A real-time campus transportation platform that enables students to book seats and track buses live, drivers to stream GPS data during journeys, and transport officers to manage fleet availability, monitoring, and notifications seamlessly.",
-    links: { live: "https://github.com/MAHESHPPAI/Busbuddy-latest", code: "#" },
-    image: "./p4.png",
-    cta: "View on Github"
   },
 ];
 
