@@ -192,7 +192,33 @@ const SelectedWorks = () => {
         translateY = pinEnd - cardTop + stackPositionPx + BASE_CONFIG.itemStackDistance * i;
       }
 
-      card.style.transform = `translate3d(0, ${Math.round(translateY * 10) / 10}px, 0) scale(${scale})`;
+      // Exit animation: slide current card down + fade out as the next card enters
+      let exitProgress = 0;
+      if (i < cards.length - 1) {
+        const nextCardTop = cardOffsets[i + 1];
+        const nextTriggerStart = nextCardTop - stackPositionPx - BASE_CONFIG.itemStackDistance * (i + 1);
+        const nextTriggerEnd = nextCardTop - scaleEndPositionPx;
+        const exitDuration = nextTriggerEnd - nextTriggerStart;
+
+        if (exitDuration > 0) {
+          if (scroll >= nextTriggerEnd) {
+            exitProgress = 1;
+          } else if (scroll > nextTriggerStart) {
+            exitProgress = (scroll - nextTriggerStart) / exitDuration;
+          }
+          exitProgress = Math.min(Math.max(exitProgress, 0), 1);
+        }
+      }
+
+      // Ease the exit with a cubic curve so it starts slow and accelerates
+      const easedExit = exitProgress * exitProgress * exitProgress;
+
+      // Push the card down by up to 60% of viewport height and fade it out
+      const exitOffsetY = easedExit * containerHeight * 0.6;
+      const exitOpacity = 1 - easedExit;
+
+      card.style.transform = `translate3d(0, ${Math.round((translateY + exitOffsetY) * 10) / 10}px, 0) scale(${scale})`;
+      card.style.opacity = exitOpacity.toFixed(3);
     }
 
     const voidContainer = voidContainerRef.current;
@@ -334,7 +360,7 @@ const SelectedWorks = () => {
     setReady(false);
     const cards = Array.from(document.querySelectorAll('.scroll-stack-card')) as HTMLElement[];
     cardsRef.current = cards;
-    cards.forEach(card => card.style.transform = '');
+    cards.forEach(card => { card.style.transform = ''; card.style.opacity = '1'; });
     if (voidContainerRef.current) {
       voidContainerRef.current.style.transform = '';
       voidContainerRef.current.style.transformOrigin = '';
