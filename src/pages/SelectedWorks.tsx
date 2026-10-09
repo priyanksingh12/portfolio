@@ -192,33 +192,39 @@ const SelectedWorks = () => {
         translateY = pinEnd - cardTop + stackPositionPx + BASE_CONFIG.itemStackDistance * i;
       }
 
-      // Exit animation: slide current card down + fade out as the next card enters
+      // Exit animation: start shrinking as soon as the next card enters from the bottom,
+      // finish shrinking exactly when the next card has settled into its position.
       let exitProgress = 0;
       if (i < cards.length - 1) {
         const nextCardTop = cardOffsets[i + 1];
-        const nextTriggerStart = nextCardTop - stackPositionPx - BASE_CONFIG.itemStackDistance * (i + 1);
         const nextTriggerEnd = nextCardTop - scaleEndPositionPx;
-        const exitDuration = nextTriggerEnd - nextTriggerStart;
+
+        // Start: the moment the next card's top edge crosses the bottom of the viewport
+        const exitStart = nextCardTop - containerHeight;
+        // End: next card is fully settled in its stacked position
+        const exitEnd = nextTriggerEnd;
+        const exitDuration = exitEnd - exitStart;
 
         if (exitDuration > 0) {
-          if (scroll >= nextTriggerEnd) {
+          if (scroll >= exitEnd) {
             exitProgress = 1;
-          } else if (scroll > nextTriggerStart) {
-            exitProgress = (scroll - nextTriggerStart) / exitDuration;
+          } else if (scroll > exitStart) {
+            exitProgress = (scroll - exitStart) / exitDuration;
           }
           exitProgress = Math.min(Math.max(exitProgress, 0), 1);
         }
       }
 
-      // Ease the exit with a cubic curve so it starts slow and accelerates
-      const easedExit = exitProgress * exitProgress * exitProgress;
+      // Ease-in-out so the shrink feels gradual throughout the whole journey
+      const easedExit = exitProgress < 0.5
+        ? 2 * exitProgress * exitProgress
+        : 1 - Math.pow(-2 * exitProgress + 2, 2) / 2;
 
-      // Push the card down by up to 60% of viewport height and fade it out
-      const exitOffsetY = easedExit * containerHeight * 0.6;
-      const exitOpacity = 1 - easedExit;
+      // Shrink card down to 0 — no position shift, no opacity change
+      const finalScale = scale * (1 - easedExit);
 
-      card.style.transform = `translate3d(0, ${Math.round((translateY + exitOffsetY) * 10) / 10}px, 0) scale(${scale})`;
-      card.style.opacity = exitOpacity.toFixed(3);
+      card.style.transform = `translate3d(0, ${Math.round(translateY * 10) / 10}px, 0) scale(${finalScale.toFixed(4)})`;
+      card.style.opacity = '1';
     }
 
     const voidContainer = voidContainerRef.current;
