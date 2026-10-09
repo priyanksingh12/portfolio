@@ -6,26 +6,36 @@ import './ScrollStack.css';
 const projects = [
   {
     id: "001",
-    title: "GraphGuardians",
-    stack: "React.js / Tailwind CSS / Node.js / Express / TigerGraph / MongoDB / Firebase",
-    description: "An AI-powered dependency security intelligence platform. Built responsive frontend interfaces using React.js and Tailwind CSS for dependency graph visualization with real-time dashboards, live vulnerability monitoring via Socket.IO and Firebase, and severity-based filtering for large-scale dependency analysis.",
-    links: { live: "https://graph-guardians-frontend.vercel.app/", code: "#" },
-    image: "/p1.png",
+    title: "SwasthyaSahay",
+    stack: "React 19 / Node.js / Express.js / PostgreSQL / Prisma ORM / Socket.IO / WebRTC / Tailwind CSS",
+    description: "A full-stack digital healthcare network bridging linguistic and infrastructural gaps in primary and specialty care. Features patient and clinician portals with appointment scheduling, longitudinal medical histories, automated symptom triage, and dynamic PDF health report generation. Integrates Bhashini AI for real-time translation into 10+ regional Indian languages, secure WebRTC virtual consultations, Socket.IO notifications, and OpenStreetMap emergency routing to nearby hospitals and pharmacies.",
+    links: { live: "https://sih-frontend-hazel.vercel.app/", demo: "https://youtu.be/x786i60JZeg?si=l6hs4bf2FAozfmTi" },
+    image: "/swasthyasahay.png",
     cta: "Live Project"
   },
   {
     id: "002",
-    title: "MindEase",
-    stack: "React / Vite / Tailwind CSS / Node.js / Express / MongoDB",
-    description: "A mental-wellness platform tested by 150+ early users. Engineered responsive interfaces for mood tracking, journaling, and AI-powered chat. Integrated REST APIs with JWT-based authentication and Chart.js/Recharts dashboards for weekly and monthly emotional insights.",
-    links: { live: "https://mindeasess.netlify.app/", code: "#" },
-    image: "/p2.png",
+    title: "GraphGuardians",
+    stack: "React.js / Tailwind CSS / Node.js / Express / TigerGraph / MongoDB / Firebase",
+    description: "An AI-powered dependency security intelligence platform. Built responsive frontend interfaces using React.js and Tailwind CSS for dependency graph visualization with real-time dashboards, live vulnerability monitoring via Socket.IO and Firebase, and severity-based filtering for large-scale dependency analysis.",
+    links: { live: "https://graph-guardians-frontend.vercel.app/" },
+    image: "/p1.png",
     cta: "Live Project"
   },
 ];
 
+interface Project {
+  id: string;
+  title: string;
+  stack: string;
+  description: string;
+  links: { live: string; demo?: string };
+  image: string;
+  cta: string;
+}
+
 interface ScrollStackCardProps {
-  project: typeof projects[0];
+  project: Project;
   index: number;
 }
 
@@ -46,17 +56,33 @@ const ScrollStackCard = ({ project, index }: ScrollStackCardProps) => {
           </div>
         </div>
 
-        <StarBorder
-          as="a"
-          href={project.links.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="live-btn-star"
-          color="#f6d365, #fda085"
-          speed="3s"
-        >
-          {project.cta}
-        </StarBorder>
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <StarBorder
+            as="a"
+            href={project.links.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="live-btn-star"
+            color="#f6d365, #fda085"
+            speed="3s"
+          >
+            {project.cta}
+          </StarBorder>
+
+          {project.links.demo && (
+            <StarBorder
+              as="a"
+              href={project.links.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="live-btn-star"
+              color="#a18cd1, #fbc2eb"
+              speed="3s"
+            >
+              Demo Video
+            </StarBorder>
+          )}
+        </div>
       </div>
 
       <div className="content-grid">
