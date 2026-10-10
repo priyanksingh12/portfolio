@@ -22,6 +22,15 @@ const projects = [
     image: "/p1.png",
     cta: "Live Project"
   },
+  {
+    id: "003",
+    title: "CloudSense",
+    stack: "Next.js / React 19 / TypeScript / FastAPI / LightGBM / Three.js / Leaflet / Tailwind CSS v4",
+    description: "A full-stack AI-driven meteorological intelligence platform for disaster management authorities. Features interactive regional dashboards with 10-day predictability horizon tracking, ECMWF and GFS model divergence analytics, automated forecast bust risk scoring, and client-side PDF disaster bulletin generation. Integrates calibrated LightGBM ML for early forecast bust detection, Three.js WebGL 3D atmospheric simulations across all 36 Indian states, Leaflet live radar overlays, and automated WhatsApp emergency alert dissemination.",
+    links: { live: "https://weather-forecast-ten-gilt.vercel.app/", demo: "https://www.youtube.com/watch?v=tR7GyQ8UjTQ&t=6s" },
+    image: "/cloudsense.png",
+    cta: "Live Project"
+  },
 ];
 
 interface Project {
