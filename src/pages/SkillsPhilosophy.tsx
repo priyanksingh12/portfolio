@@ -73,13 +73,12 @@ const SkillsPhilosophy = () => {
           className="grid grid-cols-1 md:grid-cols-5 gap-y-8"
         >
           <div className="md:col-span-1">
-            <h2 className="text-xs font-bold uppercase tracking-widest">Skills & Philosophy</h2>
+            <h2 className="text-xs font-bold uppercase tracking-widest text-black/60">About me</h2>
           </div>
-          <div className="md:col-span-4">
-            <blockquote className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-black uppercase leading-tight">
-              “The function of good software is to make the complex appear to be simple.”
-            </blockquote>
-            <p className="mt-6">— Grady Booch</p>
+          <div className="md:col-span-4 max-w-4xl">
+            <p className="text-lg md:text-2xl lg:text-3xl font-normal leading-relaxed tracking-tight text-black">
+              I'm Priyank Singh, a Computer Science Engineering student and Full-Stack Web Developer specializing in React.js, Next.js, Node.js, and modern web technologies. Passionate about building scalable, responsive, and high-performance web applications, I focus on creating intuitive user experiences backed by robust backend architectures. Skilled in REST APIs, MongoDB, Express.js, authentication, and modern UI development with Tailwind CSS. I enjoy transforming ideas into functional digital products, solving complex problems, and continuously exploring new technologies.
+            </p>
           </div>
         </motion.div>
       </div>

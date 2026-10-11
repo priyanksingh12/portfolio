@@ -1,10 +1,9 @@
-# MAHESH P PAI — Portfolio
+# PRIYANK SINGH — Portfolio
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mahesh-p-pai-b0987b2a8/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/MAHESHPPAI)
-[![Portfolio](https://img.shields.io/badge/Live_Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://maheshppai-v1.netlify.app)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/priyank-singh-ab0a13375/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/priyanksingh12)
 
-A high-performance personal portfolio showcasing full-stack engineering expertise, architectural design, and a focus on transforming complex problems into elegant, automated solutions.
+A high-performance personal portfolio showcasing full-stack engineering expertise, architectural design, and modern web applications.
 
 
 ## 🚀 Overview
@@ -56,8 +55,8 @@ src/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/MAHESHPPAI/portfolio-website.git
-   cd Portfolio-website
+   git clone https://github.com/priyanksingh12/portfolio.git
+   cd portfolio
    ```
 
 2. **Install dependencies**
@@ -83,12 +82,12 @@ src/
 
 Let's build something intelligent.
 
-- **Email**: [maheshpailinked@gmail.com](mailto:maheshpailinked@gmail.com)
-- **Instagram**: [_.maheshhhhhh._](https://www.instagram.com/_.maheshhhhhh._/)
-- **Availability**: Currently available for freelance and full-time opportunities.
+- **Email**: [priyanksing09@gmail.com](mailto:priyanksing09@gmail.com)
+- **LinkedIn**: [Priyank Singh](https://www.linkedin.com/in/priyank-singh-ab0a13375/)
+- **Availability**: Currently available for full-time and project opportunities.
 
 ---
 
 <p align="center">
-  MADE BY MAHESH ® 2026
+  MADE BY PRIYANK ® 2026
 </p>

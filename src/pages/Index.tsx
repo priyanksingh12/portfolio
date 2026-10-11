@@ -13,34 +13,6 @@ import Contact from "./Contact";
 import Testimonial from "./Testimonial";
 import Navigation from "@/components/Navigation";
 
-// --- Cursor Follower ---
-const CursorFollower = () => {
-  const [visible, setVisible] = useState(false);
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
-  const springConfig = { damping: 20, stiffness: 100, mass: 0.8 };
-  const x = useSpring(mouseX, springConfig);
-  const y = useSpring(mouseY, springConfig);
-
-  useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      setVisible(true);
-      mouseX.set(e.clientX - 12);
-      mouseY.set(e.clientY - 12);
-    };
-    window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
-  }, [mouseX, mouseY]);
-
-  if (!visible) return null;
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 w-6 h-6 bg-white/10 border border-white/30 rounded-full pointer-events-none z-[9999] hidden lg:block backdrop-blur-[1px]"
-      style={{ x, y }}
-    />
-  );
-};
 
 const BrandLogo = () => (
   <div className="fixed top-6 left-6 md:top-8 md:left-10 z-50 mix-blend-difference">
@@ -175,7 +147,6 @@ const Index = () => {
   return (
     <div className="min-h-screen relative bg-black selection:bg-white selection:text-black">
       <BrandLogo />
-      <CursorFollower />
       <Navigation />
 
       {/* Fixed background About section */}
@@ -227,13 +198,16 @@ const Index = () => {
 
       {/* Content stack */}
       <div className="relative z-20 w-full bg-transparent">
-        <div id="about" className="h-screen w-full pointer-events-none" />
+        <div id="education" className="h-screen w-full pointer-events-none">
+          <span id="about" />
+        </div>
 
         <div id="work" className="bg-black text-white relative z-20">
           <SelectedWorks />
         </div>
 
-        <div className="bg-white text-black relative z-20">
+        <div id="about-skills" className="bg-white text-black relative z-20">
+          <span id="philosophy" />
           <VectorBridge />
         </div>
 
