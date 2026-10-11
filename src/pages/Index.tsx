@@ -60,8 +60,8 @@ const AvailabilityBadge = () => (
     style={{ top: "2.25rem" }}
   >
     <span className="relative flex h-1.5 w-1.5">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white" />
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
     </span>
     <span className="font-sans font-bold text-[9px] tracking-[0.25em] uppercase text-white/90">
       Available for work
@@ -188,7 +188,6 @@ const Index = () => {
         <AvailabilityBadge />
         <SocialStrip />
         <SpinningCTA />
-        <div className="hidden lg:block"><SplashCursor /></div>
 
         {/* Monochrome Doodle Hero Artwork & Portrait Layers */}
         <MonochromeHero />
