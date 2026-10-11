@@ -52,9 +52,6 @@ const skillCategories = [
       { name: "VS Code", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
       { name: "IntelliJ IDEA", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" },
       { name: "AWS", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
-      { name: "Socket.IO", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg" },
-      { name: "WebRTC", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webrtc/webrtc-original.svg" },
-      { name: "Cloudinary", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudinary/cloudinary-original.svg" },
       { name: "Scikit-learn", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" },
     ]
   }
@@ -63,19 +60,19 @@ const skillCategories = [
 const SkillsPhilosophy = () => {
   return (
     <section className="min-h-screen bg-white text-black font-sans flex flex-col justify-between">
-      <div className="w-full px-6 md:px-12 lg:px-16 pt-16 md:pt-20 pb-8 bg-white z-10 md:flex-shrink-0">
+      <div className="w-full px-6 md:px-12 lg:px-16 pt-24 md:pt-28 lg:pt-32 pb-8 md:pb-12 bg-white z-10 md:flex-shrink-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 gap-y-8"
+          className="grid grid-cols-1 md:grid-cols-5 gap-y-6 md:gap-y-8"
         >
-          <div className="md:col-span-1">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-black/60">About me</h2>
+          <div className="md:col-span-1 pt-1 md:pt-2">
+            <h2 className="text-xs md:text-sm font-bold uppercase tracking-widest text-black/60">About me</h2>
           </div>
-          <div className="md:col-span-4 max-w-4xl">
-            <p className="text-lg md:text-2xl lg:text-3xl font-normal leading-relaxed tracking-tight text-black">
+          <div className="md:col-span-4 max-w-5xl">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-[2rem] xl:text-[2.2rem] font-medium leading-relaxed md:leading-[1.38] lg:leading-[1.35] tracking-tight text-black">
               I'm Priyank Singh, a Computer Science Engineering student and Full-Stack Web Developer specializing in React.js, Next.js, Node.js, and modern web technologies. Passionate about building scalable, responsive, and high-performance web applications, I focus on creating intuitive user experiences backed by robust backend architectures. Skilled in REST APIs, MongoDB, Express.js, authentication, and modern UI development with Tailwind CSS. I enjoy transforming ideas into functional digital products, solving complex problems, and continuously exploring new technologies.
             </p>
           </div>

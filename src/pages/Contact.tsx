@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz6_hmNogiRhIAkAdfWU9q0wQb2WdEvswPCTHCd9U-giehtMTgKcmZq2NsQES-XYuxd/exec";
+const FORMSUBMIT_URL = "https://formsubmit.co/ajax/priyanksing09@gmail.com";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ const Contact = () => {
     message: "",
   });
 
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "activation" | "error">("idle");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,19 +25,34 @@ const Contact = () => {
     setStatus("sending");
 
     try {
-      // ✅ Send as URLSearchParams — no-cors mode drops JSON headers,
-      //    but form-encoded bodies are always forwarded correctly.
-      const body = new URLSearchParams(formData);
-
-      await fetch(APPS_SCRIPT_URL, {
+      const response = await fetch(FORMSUBMIT_URL, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `Portfolio Message from ${formData.firstName} ${formData.lastName}: ${formData.subject}`,
+          _template: "table",
+          _captcha: "false",
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
 
-      setStatus("success");
-      setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
+      const data = await response.json().catch(() => null);
+
+      if (response.ok && data?.success !== "false") {
+        setStatus("success");
+        setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
+      } else if (data?.message && data.message.toLowerCase().includes("activation")) {
+        setStatus("activation");
+        setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
@@ -78,13 +93,22 @@ const Contact = () => {
             </h1>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="mt-8 lg:mt-0 hidden lg:block">
+          <motion.div variants={itemVariants} className="mt-8 lg:mt-0">
             <h2 className="text-xs font-bold uppercase tracking-widest mb-4 text-black/60">
               Contact Form
             </h2>
-            <p className="text-base md:text-lg font-normal leading-relaxed text-black/80 max-w-md text-left">
+            <p className="text-base md:text-lg font-normal leading-relaxed text-black/80 max-w-md text-left mb-4">
               Send me a message and I'll get back to you as soon as possible. Let's build something great together.
             </p>
+            <div className="text-sm font-medium text-black/70">
+              <span className="block text-xs uppercase tracking-wider text-black/40 mb-1">Direct Email</span>
+              <a
+                href="mailto:priyanksing09@gmail.com"
+                className="text-base md:text-lg font-bold text-black hover:opacity-70 transition-opacity underline underline-offset-4"
+              >
+                priyanksing09@gmail.com
+              </a>
+            </div>
           </motion.div>
         </div>
 
@@ -161,8 +185,19 @@ const Contact = () => {
               {status === "success" && (
                 <p className="text-sm text-green-600 font-medium">✓ Message sent! I'll get back to you soon.</p>
               )}
+              {status === "activation" && (
+                <div className="p-3 bg-neutral-100 border border-neutral-300 rounded text-xs leading-relaxed text-black/90">
+                  <p className="font-bold mb-1">One-time confirmation required:</p>
+                  <p>FormSubmit has sent a 1-click confirmation link to <span className="font-semibold underline">priyanksing09@gmail.com</span>. Please click "Activate Form" in your Gmail so future submissions are routed straight to your inbox.</p>
+                </div>
+              )}
               {status === "error" && (
-                <p className="text-sm text-red-500 font-medium">✗ Something went wrong. Please try again.</p>
+                <p className="text-sm text-red-500 font-medium">
+                  ✗ Could not send automatically. Please email me directly at{" "}
+                  <a href="mailto:priyanksing09@gmail.com" className="underline font-bold">
+                    priyanksing09@gmail.com
+                  </a>
+                </p>
               )}
             </div>
 

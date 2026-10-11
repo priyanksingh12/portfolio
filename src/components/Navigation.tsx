@@ -97,7 +97,14 @@ const Navigation = () => {
     setOpen(false);
     setTimeout(() => {
       if (lenis) {
-        lenis.scrollTo(href, { offset: 0, duration: 1.2 });
+        if (href === "#about-skills") {
+          const targetEl = document.getElementById("about-skills");
+          if (targetEl) {
+            lenis.scrollTo(targetEl, { offset: 0, duration: 1.2, force: true });
+            return;
+          }
+        }
+        lenis.scrollTo(href, { offset: 0, duration: 1.2, force: true });
       } else {
         const el = document.querySelector(href);
         el?.scrollIntoView({ behavior: "smooth" });

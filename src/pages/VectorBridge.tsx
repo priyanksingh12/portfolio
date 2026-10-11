@@ -96,11 +96,12 @@ const VectorBridge = () => {
             const svgCont = svgContainerRef.current;
             const totalLen = totalLineLenRef.current;
 
-            if (!box || !inner) return;
+            if (!box || !inner || !sectionRef.current) return;
 
             const vh = window.innerHeight;
             const vw = window.innerWidth;
-            const localScroll = scroll - sectionTopRef.current;
+            const rect = sectionRef.current.getBoundingClientRect();
+            const localScroll = -rect.top;
 
             // Handle Bridge Line
             if (line && svgCont && totalLen > 0) {
@@ -165,7 +166,7 @@ const VectorBridge = () => {
 
     return (
         <section ref={sectionRef} className="relative bg-white text-black" style={{ minHeight: '320vh' }}>
-            <div id="about-skills" style={{ position: 'absolute', top: '120vh', left: 0, height: '1px', width: '1px', pointerEvents: 'none' }}>
+            <div id="about-skills" style={{ position: 'absolute', top: 'calc(120vh + 10px)', left: 0, height: '1px', width: '1px', pointerEvents: 'none' }}>
                 <span id="philosophy" />
             </div>
             <div
