@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { useLenis } from "lenis/react";
 
 interface NavItem {
   label: string;
@@ -75,6 +76,7 @@ const socialVariants: Variants = {
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     if (open) {
@@ -90,8 +92,17 @@ const Navigation = () => {
     };
   }, [open]);
 
-  const handleNavClick = () => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     setOpen(false);
+    setTimeout(() => {
+      if (lenis) {
+        lenis.scrollTo(href, { offset: 0, duration: 1.2 });
+      } else {
+        const el = document.querySelector(href);
+        el?.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   return (
@@ -176,7 +187,7 @@ const Navigation = () => {
                 >
                   <motion.a
                     href={item.href}
-                    onClick={handleNavClick}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     custom={i}
                     variants={itemVariants}
                     initial="closed"

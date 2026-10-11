@@ -62,9 +62,8 @@ const skillCategories = [
 
 const SkillsPhilosophy = () => {
   return (
-    // Unified layout using justify-center on all breakpoints to keep elements seamlessly grouped
-    <section className="min-h-screen bg-white text-black font-sans flex flex-col justify-center">
-      <div className="w-full px-6 md:px-12 lg:px-16 pt-24 pb-12 md:pt-12 md:pb-12 bg-white z-10 md:flex-shrink-0">
+    <section className="min-h-screen bg-white text-black font-sans flex flex-col justify-between">
+      <div className="w-full px-6 md:px-12 lg:px-16 pt-16 md:pt-20 pb-8 bg-white z-10 md:flex-shrink-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

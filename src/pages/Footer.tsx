@@ -53,7 +53,7 @@ const Footer = () => {
             Priyank Singh
           </p>
           <p className="font-sans text-xs md:text-sm font-medium uppercase tracking-wide leading-relaxed text-white/60">
-            Frontend Developer
+            Fullstack Developer
           </p>
           <p className="font-sans text-xs md:text-sm font-medium uppercase tracking-wide leading-relaxed text-white/60">
             Lucknow, Uttar Pradesh, India

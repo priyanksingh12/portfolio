@@ -206,8 +206,7 @@ const Index = () => {
           <SelectedWorks />
         </div>
 
-        <div id="about-skills" className="bg-white text-black relative z-20">
-          <span id="philosophy" />
+        <div className="bg-white text-black relative z-20">
           <VectorBridge />
         </div>
 

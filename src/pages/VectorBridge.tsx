@@ -165,7 +165,9 @@ const VectorBridge = () => {
 
     return (
         <section ref={sectionRef} className="relative bg-white text-black" style={{ minHeight: '320vh' }}>
-            <div id="philosophy" style={{ position: 'absolute', top: '120vh', left: 0, height: '1px', width: '1px', pointerEvents: 'none' }} />
+            <div id="about-skills" style={{ position: 'absolute', top: '120vh', left: 0, height: '1px', width: '1px', pointerEvents: 'none' }}>
+                <span id="philosophy" />
+            </div>
             <div
                 ref={svgContainerRef}
                 style={{
@@ -219,8 +221,9 @@ const VectorBridge = () => {
                     marginLeft: '-50vw',
                     marginTop: '-50vh',
                     display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    alignItems: 'stretch',
+                    justifyContent: 'flex-start',
                     transformOrigin: 'center center'
                 }}>
                     <div style={{ width: '100%', height: '100%' }}>
