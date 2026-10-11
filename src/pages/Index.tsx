@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useSpring, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 // Components
 import About from "./About";
 import SplashCursor from "@/components/SplashCursor";
+import MonochromeHero from "@/components/MonochromeHero";
 import SelectedWorks from "./SelectedWorks";
 import VectorBridge from "./VectorBridge";
 import Footer from "./Footer";
@@ -14,14 +15,16 @@ import Navigation from "@/components/Navigation";
 
 // --- Cursor Follower ---
 const CursorFollower = () => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const [visible, setVisible] = useState(false);
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
   const springConfig = { damping: 20, stiffness: 100, mass: 0.8 };
   const x = useSpring(mouseX, springConfig);
   const y = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
+      setVisible(true);
       mouseX.set(e.clientX - 12);
       mouseY.set(e.clientY - 12);
     };
@@ -29,9 +32,11 @@ const CursorFollower = () => {
     return () => window.removeEventListener("mousemove", moveCursor);
   }, [mouseX, mouseY]);
 
+  if (!visible) return null;
+
   return (
     <motion.div
-      className="fixed top-0 left-0 w-6 h-6 bg-gray-400/50 rounded-full pointer-events-none z-[9999] hidden lg:block backdrop-blur-[1px]"
+      className="fixed top-0 left-0 w-6 h-6 bg-white/10 border border-white/30 rounded-full pointer-events-none z-[9999] hidden lg:block backdrop-blur-[1px]"
       style={{ x, y }}
     />
   );
@@ -51,14 +56,14 @@ const AvailabilityBadge = () => (
     initial={{ opacity: 0, y: -10 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.4, ease: "easeOut" }}
-    className="absolute z-10 left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2 pointer-events-none"
+    className="absolute z-30 left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2 pointer-events-none"
     style={{ top: "2.25rem" }}
   >
     <span className="relative flex h-1.5 w-1.5">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white" />
     </span>
-    <span className="font-sans font-black text-[9px] tracking-[0.25em] uppercase text-white">
+    <span className="font-sans font-bold text-[9px] tracking-[0.25em] uppercase text-white/90">
       Available for work
     </span>
   </motion.div>
@@ -185,48 +190,39 @@ const Index = () => {
         <SpinningCTA />
         <div className="hidden lg:block"><SplashCursor /></div>
 
-        {/* Mobile Midpoint Buffer: 80px total height from top to clear hamburger (Hamburger at 24px + 56px height) */}
-        <div className="h-[32px] w-full md:hidden" /> {/* py-12 (48px) + 32px = 80px */}
+        {/* Monochrome Doodle Hero Artwork & Portrait Layers */}
+        <MonochromeHero />
 
-        {/* Dynamic Centering Container for Mobile Socials */}
-        <div className="flex-1 flex flex-col items-end justify-center md:hidden pr-0 z-10 pointer-events-none">
+        {/* Mobile Midpoint Buffer (clears top hamburger) */}
+        <div className="h-[32px] w-full md:hidden" />
+
+        {/* Mobile Social Strip */}
+        <div className="flex-1 flex flex-col items-end justify-center md:hidden pr-0 z-30 pointer-events-none">
           <div className="pointer-events-auto">
             <MobileSocialStrip />
           </div>
         </div>
 
-        <div className="z-10 mt-auto mb-6 md:mb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-fit"
+        {/* Mobile Contact Button */}
+        <div className="z-30 mt-auto mb-4 md:hidden">
+          <a
+            href="#contact"
+            className="group relative overflow-hidden border border-white/40 px-5 py-2.5 flex items-center gap-3 hover:border-white transition-colors duration-500 w-fit backdrop-blur-sm bg-black/40"
           >
-            <a href="#contact" className="group relative overflow-hidden border border-white/30 px-5 py-3 flex items-center gap-3 hover:border-white transition-colors duration-500 w-fit mb-6 md:hidden">
-              <span className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out" />
-              <span className="relative font-sans font-black text-[10px] tracking-[0.25em] uppercase text-white group-hover:text-black transition-colors duration-300 z-10">Get in touch</span>
-              <svg className="relative w-3 h-3 text-white group-hover:text-black transition-colors duration-300 z-10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M1 6h10M6 1l5 5-5 5" />
-              </svg>
-            </a>
-            <h1 className="font-sans font-bold text-7xl md:text-8xl lg:text-[9rem] xl:text-[11rem] leading-[0.85] tracking-tighter text-white uppercase text-left">
-              Driven<br />by logic
-            </h1>
-          </motion.div>
-        </div>
-
-        <div className="z-10 grid grid-cols-1 md:grid-cols-12 w-full gap-4 mb-8 md:mb-0">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="col-span-1 md:col-span-5 lg:col-span-4"
-          >
-            <div className="w-12 h-[2px] bg-white mb-6 md:hidden" />
-            <p className="font-sans text-xs md:text-sm font-medium text-white leading-relaxed tracking-wide uppercase text-left">
-              Building responsive web interfaces, crafting full-stack platforms and focused on transforming ideas into production-ready applications.
-            </p>
-          </motion.div>
+            <span className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out" />
+            <span className="relative font-sans font-black text-[10px] tracking-[0.25em] uppercase text-white group-hover:text-black transition-colors duration-300 z-10">
+              Get in touch
+            </span>
+            <svg
+              className="relative w-3 h-3 text-white group-hover:text-black transition-colors duration-300 z-10"
+              viewBox="0 0 12 12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+            >
+              <path d="M1 6h10M6 1l5 5-5 5" />
+            </svg>
+          </a>
         </div>
       </section>
 
